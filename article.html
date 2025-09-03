@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article - EyeGuard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="index.html" style="text-decoration: none; color: inherit;">
+                    <h1>👁️ EyeGuard</h1>
+                </a>
+            </div>
+            <div class="nav-actions">
+                <button class="lang-toggle" id="lang-toggle">
+                    <i class="fas fa-language"></i>
+                    <span id="lang-text">EN</span>
+                </button>
+                <a href="index.html" class="back-button">
+                    <i class="fas fa-arrow-left"></i>
+                    <span data-en="Back to Home" data-zh="返回首页">Back to Home</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Article Content -->
+    <main class="article-page">
+        <div class="article-header">
+            <h1 class="article-title" id="article-title">Loading...</h1>
+            <div class="article-meta" id="article-meta"></div>
+        </div>
+        
+        <div class="container">
+            <img id="article-image" class="article-image" style="display: none;" alt="">
+            
+            <div id="article-video" class="article-video" style="display: none;">
+                <button class="video-button" id="video-button">
+                    <i class="fas fa-play"></i>
+                    <span data-en="Watch video" data-zh="观看视频">Watch video</span>
+                </button>
+            </div>
+            
+            <div class="article-content" id="article-content">
+                <div class="loading">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <span data-en="Loading article..." data-zh="加载文章中...">Loading article...</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Global state
+        let currentLang = 'en';
+        let articles = [];
+        let currentArticle = null;
+
+        // Language data
+        const translations = {
+            en: {
+                'Back to Home': 'Back to Home',
+                'Watch video': 'Watch video',
+                'Loading article...': 'Loading article...'
+            },
+            zh: {
+                'Back to Home': '返回首页',
+                'Watch video': '观看视频',
+                'Loading article...': '加载文章中...'
+            }
+        };
+
+        // DOM elements
+        const langToggle = document.getElementById('lang-toggle');
+        const langText = document.getElementById('lang-text');
+        const articleTitle = document.getElementById('article-title');
+        const articleMeta = document.getElementById('article-meta');
+        const articleImage = document.getElementById('article-image');
+        const articleVideo = document.getElementById('article-video');
+        const videoButton = document.getElementById('video-button');
+        const articleContent = document.getElementById('article-content');
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            currentLang = urlParams.get('lang') || 'en';
+            const articleIndex = parseInt(urlParams.get('index')) || 0;
+            
+            updateLanguage();
+            loadArticle(articleIndex);
+            setupEventListeners();
+        });
+
+        // Event listeners
+        function setupEventListeners() {
+            langToggle.addEventListener('click', toggleLanguage);
+            videoButton.addEventListener('click', openVideo);
+        }
+
+        // Language functions
+        function toggleLanguage() {
+            currentLang = currentLang === 'en' ? 'zh' : 'en';
+            updateLanguage();
+            // Reload article with new language
+            const urlParams = new URLSearchParams(window.location.search);
+            const articleIndex = parseInt(urlParams.get('index')) || 0;
+            loadArticle(articleIndex);
+        }
+
+        function updateLanguage() {
+            langText.textContent = currentLang === 'en' ? 'EN' : '中文';
+            
+            document.querySelectorAll('[data-en][data-zh]').forEach(element => {
+                const text = currentLang === 'en' ? element.dataset.en : element.dataset.zh;
+                element.textContent = text;
+            });
+        }
+
+        // Article functions
+        async function loadArticle(index) {
+            try {
+                const response = await fetch(`assets/articles/${currentLang}.json`);
+                if (!response.ok) {
+                    throw new Error('Failed to load articles');
+                }
+                articles = await response.json();
+                
+                if (index >= 0 && index < articles.length) {
+                    currentArticle = articles[index];
+                    renderArticle();
+                } else {
+                    throw new Error('Article not found');
+                }
+            } catch (error) {
+                console.error('Error loading article:', error);
+                articleContent.innerHTML = `
+                    <div class="loading">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <span>Failed to load article</span>
+                    </div>
+                `;
+            }
+        }
+
+        function renderArticle() {
+            if (!currentArticle) return;
+
+            // Update title
+            document.title = `${currentArticle.title} - EyeGuard`;
+            articleTitle.textContent = currentArticle.title;
+
+            // Update meta
+            articleMeta.innerHTML = `
+                <span>${currentLang === 'en' ? 'Published' : '发布时间'}: ${new Date().toLocaleDateString()}</span>
+            `;
+
+            // Update image
+            if (currentArticle.imageUrl) {
+                articleImage.src = currentArticle.imageUrl;
+                articleImage.alt = currentArticle.title;
+                articleImage.style.display = 'block';
+                articleImage.onerror = function() {
+                    this.style.display = 'none';
+                };
+            } else {
+                articleImage.style.display = 'none';
+            }
+
+            // Update video
+            if (currentArticle.videoUrl) {
+                videoButton.onclick = () => window.open(currentArticle.videoUrl, '_blank');
+                articleVideo.style.display = 'block';
+            } else {
+                articleVideo.style.display = 'none';
+            }
+
+            // Render markdown content
+            if (currentArticle.bodyMarkdown) {
+                const html = marked.parse(currentArticle.bodyMarkdown);
+                articleContent.innerHTML = html;
+            } else {
+                articleContent.innerHTML = `
+                    <div class="loading">
+                        <i class="fas fa-info-circle"></i>
+                        <span>No content available</span>
+                    </div>
+                `;
+            }
+        }
+
+        function openVideo() {
+            if (currentArticle && currentArticle.videoUrl) {
+                window.open(currentArticle.videoUrl, '_blank');
+            }
+        }
+
+        // Add scroll effect to navbar
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

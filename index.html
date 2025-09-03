@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>👁️ EyeGuard - Protect Your Vision</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <h1>👁️ EyeGuard</h1>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="#about" class="nav-link" data-en="About us" data-zh="关于我们">About us</a>
+                <a href="#articles" class="nav-link" data-en="Articles" data-zh="文章">Articles</a>
+                <a href="#program" class="nav-link" data-en="Our program" data-zh="我们的项目">Our program</a>
+                <a href="#join" class="nav-link" data-en="Join us" data-zh="加入我们">Join us</a>
+                <a href="#contact" class="nav-link" data-en="Contact" data-zh="联系方式">Contact</a>
+            </div>
+            <div class="nav-actions">
+                <button class="lang-toggle" id="lang-toggle">
+                    <i class="fas fa-language"></i>
+                    <span id="lang-text">EN</span>
+                </button>
+                <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <h1 class="hero-title" data-en="Protect your vision with EyeGuard" data-zh="用 EyeGuard 守护视力">Protect your vision with EyeGuard</h1>
+            <p class="hero-subtitle" data-en="Articles, videos, and practical tips for eye health & myopia awareness." data-zh="用文章与视频提升用眼健康认知，提供近视后的日常注意。">Articles, videos, and practical tips for eye health & myopia awareness.</p>
+            <button class="cta-button" id="join-cta" data-en="Join the program" data-zh="加入项目">Join the program</button>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title" data-en="About us" data-zh="关于我们">About us</h2>
+            <p class="section-content" data-en="EyeGuard is a student-led project translating research into simple daily habits (like the 20-20-20 rule)." data-zh="EyeGuard 是一个由学生发起的项目，把眼健康研究转化为易于实践的日常习惯（如 20-20-20 法则）。">EyeGuard is a student-led project translating research into simple daily habits (like the 20-20-20 rule).</p>
+        </div>
+    </section>
+
+    <!-- Articles Section -->
+    <section id="articles" class="section alt">
+        <div class="container">
+            <h2 class="section-title" data-en="Articles" data-zh="文章">Articles</h2>
+            <div class="articles-grid" id="articles-grid">
+                <div class="loading">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <span data-en="Loading articles..." data-zh="加载文章中...">Loading articles...</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Program Section -->
+    <section id="program" class="section">
+        <div class="container">
+            <h2 class="section-title" data-en="Our program" data-zh="我们的项目">Our program</h2>
+            <div class="program-steps">
+                <div class="step">
+                    <i class="fas fa-check-circle"></i>
+                    <div class="step-content">
+                        <h3 data-en="Screen-time audit" data-zh="屏幕时间盘点">Screen-time audit</h3>
+                        <p data-en="Track near-work habits daily." data-zh="每日记录近距离用眼习惯。">Track near-work habits daily.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <i class="fas fa-check-circle"></i>
+                    <div class="step-content">
+                        <h3 data-en="Micro-lessons" data-zh="微课视频">Micro-lessons</h3>
+                        <p data-en="3–5 min weekly videos." data-zh="每周 3–5 分钟视频学习。">3–5 min weekly videos.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <i class="fas fa-check-circle"></i>
+                    <div class="step-content">
+                        <h3 data-en="Practice" data-zh="每日实践">Practice</h3>
+                        <p data-en="20-20-20, outdoor time, lighting & posture." data-zh="20-20-20、户外时间、合适光照与正确坐姿。">20-20-20, outdoor time, lighting & posture.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <i class="fas fa-check-circle"></i>
+                    <div class="step-content">
+                        <h3 data-en="Parent/Teacher kit" data-zh="家校工具包">Parent/Teacher kit</h3>
+                        <p data-en="Posters, slides, and class activities." data-zh="宣传海报、课堂活动与幻灯片。">Posters, slides, and class activities.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Join Section -->
+    <section id="join" class="section alt">
+        <div class="container">
+            <h2 class="section-title" data-en="Join us" data-zh="加入我们">Join us</h2>
+            <div class="join-form-container">
+                <form class="join-form" id="join-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name" data-en="Full name" data-zh="姓名">Full name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" data-en="Email" data-zh="邮箱">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="role" data-en="Role" data-zh="身份">Role</label>
+                        <select id="role" name="role">
+                            <option value="Student" data-en="Student" data-zh="学生">Student</option>
+                            <option value="Parent" data-en="Parent" data-zh="家长">Parent</option>
+                            <option value="Educator" data-en="Educator" data-zh="教师">Educator</option>
+                            <option value="Other" data-en="Other" data-zh="其他">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message" data-en="Message (how you'd like to help / what you need)" data-zh="留言（想参与方式 / 需要的支持）">Message (how you'd like to help / what you need)</label>
+                        <textarea id="message" name="message" rows="4"></textarea>
+                    </div>
+                    <button type="submit" class="submit-button">
+                        <i class="fas fa-paper-plane"></i>
+                        <span data-en="Request access" data-zh="提交申请">Request access</span>
+                    </button>
+                    <p class="form-note" data-en="We'll reply in 1–2 days." data-zh="我们会在 1–2 天内回复。">We'll reply in 1–2 days.</p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="container">
+            <h2 class="section-title" data-en="Contact" data-zh="联系方式">Contact</h2>
+            <div class="contact-cards">
+                <div class="contact-card">
+                    <h3 data-en="Email" data-zh="邮箱">Email</h3>
+                    <a href="mailto:Dereksha2008@gmail.com">Dereksha2008@gmail.com</a>
+                </div>
+                <div class="contact-card">
+                    <h3 data-en="Phone" data-zh="电话">Phone</h3>
+                    <a href="tel:+19499926961">+1 949-992-6961</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">
+                © <span id="current-year"></span> EyeGuard — 
+                <span data-en="Educational info only, not medical advice." data-zh="仅供教育参考，非医疗建议。">Educational info only, not medical advice.</span>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Join Modal -->
+    <div class="modal" id="join-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 data-en="Join the program" data-zh="加入项目">Join the program</h3>
+                <button class="modal-close" id="modal-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="join-form" id="modal-join-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="modal-name" data-en="Full name" data-zh="姓名">Full name</label>
+                            <input type="text" id="modal-name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="modal-email" data-en="Email" data-zh="邮箱">Email</label>
+                            <input type="email" id="modal-email" name="email" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="modal-role" data-en="Role" data-zh="身份">Role</label>
+                        <select id="modal-role" name="role">
+                            <option value="Student" data-en="Student" data-zh="学生">Student</option>
+                            <option value="Parent" data-en="Parent" data-zh="家长">Parent</option>
+                            <option value="Educator" data-en="Educator" data-zh="教师">Educator</option>
+                            <option value="Other" data-en="Other" data-zh="其他">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="modal-message" data-en="Message (how you'd like to help / what you need)" data-zh="留言（想参与方式 / 需要的支持）">Message (how you'd like to help / what you need)</label>
+                        <textarea id="modal-message" name="message" rows="4"></textarea>
+                    </div>
+                    <button type="submit" class="submit-button">
+                        <i class="fas fa-paper-plane"></i>
+                        <span data-en="Request access" data-zh="提交申请">Request access</span>
+                    </button>
+                    <p class="form-note" data-en="We'll reply in 1–2 days." data-zh="我们会在 1–2 天内回复。">We'll reply in 1–2 天内回复。</p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Message -->
+    <div class="toast" id="success-toast">
+        <i class="fas fa-check-circle"></i>
+        <span data-en="Thanks! We will email you soon." data-zh="已收到，我们会尽快联系你。">Thanks! We will email you soon.</span>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
