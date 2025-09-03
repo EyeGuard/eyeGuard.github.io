@@ -253,7 +253,7 @@ async function loadArticles() {
         articles = await response.json();
         renderArticles();
     } catch (error) {
-        console.error('Error loading articles:', error);
+        console.error('Error loading articles:');
         articlesGrid.innerHTML = `
             <div class="loading">
                 <i class="fas fa-exclamation-triangle"></i>
