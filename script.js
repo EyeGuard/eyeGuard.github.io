@@ -1,6 +1,8 @@
 // Global state
 let currentLang = 'en';
 let articles = [];
+let news = [];
+let showingAllNews = false;
 
 // Language data
 const translations = {
@@ -80,12 +82,15 @@ const joinForm = document.getElementById('join-form');
 const modalJoinForm = document.getElementById('modal-join-form');
 const successToast = document.getElementById('success-toast');
 const articlesGrid = document.getElementById('articles-grid');
+const newsContainer = document.getElementById('news-container');
+const seeMoreNewsButton = document.getElementById('see-more-news');
 const currentYear = document.getElementById('current-year');
 
 // Initialize
 document.addEventListener('DOMContentLoaded', function() {
     currentYear.textContent = new Date().getFullYear();
     loadArticles();
+    loadNews();
     setupEventListeners();
     updateLanguage();
 });
@@ -94,18 +99,18 @@ document.addEventListener('DOMContentLoaded', function() {
 function setupEventListeners() {
     // Language toggle
     langToggle.addEventListener('click', toggleLanguage);
-    
+
     // Mobile menu toggle
     mobileMenuToggle.addEventListener('click', toggleMobileMenu);
-    
+
     // Navigation links
     document.querySelectorAll('.nav-link').forEach(link => {
         link.addEventListener('click', handleNavClick);
     });
-    
+
     // Join CTA button
     joinCta.addEventListener('click', openJoinModal);
-    
+
     // Modal close
     modalClose.addEventListener('click', closeJoinModal);
     joinModal.addEventListener('click', function(e) {
@@ -113,11 +118,21 @@ function setupEventListeners() {
             closeJoinModal();
         }
     });
-    
+
     // Form submissions
     joinForm.addEventListener('submit', handleFormSubmit);
     modalJoinForm.addEventListener('submit', handleFormSubmit);
-    
+
+    // See more / Show less news button
+    if (seeMoreNewsButton) {
+        seeMoreNewsButton.addEventListener('click', function() {
+            if (news.length > 3) {
+                showingAllNews = !showingAllNews;
+                renderNews();
+            }
+        });
+    }
+
     // Close modal on escape key
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape' && joinModal.classList.contains('show')) {
@@ -131,12 +146,15 @@ function toggleLanguage() {
     currentLang = currentLang === 'en' ? 'zh' : 'en';
     updateLanguage();
     loadArticles(); // Reload articles with new language
+    // Reset showingAllNews state when language changes
+    showingAllNews = false;
+    loadNews(); // Reload news with new language
 }
 
 function updateLanguage() {
     // Update language text
     langText.textContent = currentLang === 'en' ? 'EN' : '中文';
-    
+
     // Update all elements with data attributes
     document.querySelectorAll('[data-en][data-zh]').forEach(element => {
         const text = currentLang === 'en' ? element.dataset.en : element.dataset.zh;
@@ -148,7 +166,7 @@ function updateLanguage() {
             element.textContent = text;
         }
     });
-    
+
     // Update select options
     document.querySelectorAll('select option').forEach(option => {
         const enText = option.dataset.en;
@@ -196,7 +214,7 @@ function closeJoinModal() {
 // Form handling
 async function handleFormSubmit(e) {
     e.preventDefault();
-    
+
     const form = e.target;
     const formData = new FormData(form);
     const data = {
@@ -206,7 +224,7 @@ async function handleFormSubmit(e) {
         message: formData.get('message'),
         _subject: 'New EyeGuard Join Request'
     };
-    
+
     try {
         // Try Formspree first (replace with your actual endpoint)
         const response = await fetch('https://formspree.io/f/your-form-id', {
@@ -216,7 +234,7 @@ async function handleFormSubmit(e) {
             },
             body: JSON.stringify(data)
         });
-        
+
         if (response.ok) {
             showSuccessToast();
             form.reset();
@@ -253,7 +271,7 @@ async function loadArticles() {
         articles = await response.json();
         renderArticles();
     } catch (error) {
-        console.error('Error loading articles:');
+        console.error('Error loading articles:', error);
         articlesGrid.innerHTML = `
             <div class="loading">
                 <i class="fas fa-exclamation-triangle"></i>
@@ -273,7 +291,7 @@ function renderArticles() {
         `;
         return;
     }
-    
+
     articlesGrid.innerHTML = articles.map((article, index) => `
         <div class="article-card" onclick="openArticle(${index})">
             ${article.imageUrl ? `<img src="${article.imageUrl}" alt="${article.title}" class="article-image" onerror="this.style.display='none'">` : ''}
@@ -291,10 +309,94 @@ function renderArticles() {
 function openArticle(index) {
     const article = articles[index];
     if (!article) return;
-    
+
     // Create article page URL
     const articleUrl = `article.html?lang=${currentLang}&index=${index}`;
     window.location.href = articleUrl;
+}
+
+// News functions
+async function loadNews() {
+    try {
+        const response = await fetch(`assets/articles/news_${currentLang}.json`);
+        if (!response.ok) {
+            throw new Error('Failed to load news');
+        }
+        news = await response.json();
+        showingAllNews = false; // Reset to showing first 3 when loading new news
+        renderNews();
+    } catch (error) {
+        console.error('Error loading news:', error);
+        newsContainer.innerHTML = `
+            <div class="loading">
+                <i class="fas fa-exclamation-triangle"></i>
+                <span>Failed to load news</span>
+            </div>
+        `;
+        showingAllNews = false;
+    }
+}
+
+function renderNews() {
+    if (news.length === 0) {
+        newsContainer.innerHTML = `
+            <div class="loading">
+                <i class="fas fa-info-circle"></i>
+                <span>No news available</span>
+            </div>
+        `;
+        if (seeMoreNewsButton) {
+            seeMoreNewsButton.style.display = 'none';
+        }
+        showingAllNews = false;
+        return;
+    }
+
+    // Display first 3 news items or all if showingAllNews is true
+    const newsToDisplay = showingAllNews ? news : news.slice(0, 3);
+
+    newsContainer.innerHTML = newsToDisplay.map((item, index) => {
+        const hasUrl = item.url && item.url.trim() !== '';
+        const cardContent = `
+            ${item.imageUrl ? `<img src="${item.imageUrl}" alt="${item.title}" class="news-image" onerror="this.style.display='none'">` : ''}
+            <div class="news-content">
+                <h3 class="news-title">${item.title}</h3>
+                <p class="news-date">${item.date}</p>
+                <p class="news-description">${item.description}</p>
+            </div>
+        `;
+
+        if (hasUrl) {
+            return `<div class="news-card" data-news-url="${item.url.replace(/"/g, '&quot;')}" title="${currentLang === 'en' ? 'Click to read full article' : '点击阅读全文'}">${cardContent}</div>`;
+        } else {
+            return `<div class="news-card">${cardContent}</div>`;
+        }
+    }).join('');
+
+    // Attach click event listeners to news cards with URLs
+    newsContainer.querySelectorAll('.news-card[data-news-url]').forEach(card => {
+        card.addEventListener('click', function() {
+            const url = this.getAttribute('data-news-url');
+            if (url) {
+                window.open(url, '_blank');
+            }
+        });
+    });
+
+    // Update button text and visibility
+    if (seeMoreNewsButton) {
+        if (news.length > 3) {
+            seeMoreNewsButton.style.display = 'block';
+            seeMoreNewsButton.setAttribute('data-en', showingAllNews ? 'Show less' : 'See more news stories');
+            seeMoreNewsButton.setAttribute('data-zh', showingAllNews ? '显示更少' : '查看更多新闻');
+            const buttonText = showingAllNews
+                ? (currentLang === 'en' ? 'Show less' : '显示更少')
+                : (currentLang === 'en' ? 'See more news stories' : '查看更多新闻');
+            seeMoreNewsButton.textContent = buttonText;
+        } else {
+            seeMoreNewsButton.style.display = 'none';
+        }
+    }
 }
 
 // Smooth scrolling for anchor links
