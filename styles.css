@@ -40,6 +40,11 @@ body {
     color: #4f46e5;
 }
 
+.nav-logo {
+    height: 32px;
+    vertical-align: middle;
+}
+
 .nav-menu {
     display: flex;
     gap: 24px;
@@ -93,12 +98,19 @@ body {
     padding: 8px;
 }
 
-/* Hero Section */
+/* Hero Section white background*/
+
 .hero {
-    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    background: url('assets/images/background.png') center bottom/contain no-repeat;
+
+    background-color: white;
     color: white;
-    padding: 120px 20px 80px;
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 16 / 10;
+    padding: 60px 20px;
 }
 
 .hero-container {

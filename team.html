@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EyeGuard - Our Team</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .team-page {
+            padding-top: 80px;
+        }
+
+        .founder-card {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            background: white;
+            border-radius: 16px;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            padding: 40px;
+            margin-top: 32px;
+        }
+
+        .founder-card img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid #4f46e5;
+        }
+
+        .founder-info h3 {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: #1f2937;
+            margin-bottom: 8px;
+        }
+
+        .founder-info .founder-role {
+            font-size: 1.125rem;
+            color: #4f46e5;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .founder-info .founder-chapter {
+            font-size: 1rem;
+            color: #6b7280;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 24px;
+            margin-top: 32px;
+        }
+
+        .team-card {
+            background: white;
+            border-radius: 14px;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            text-align: center;
+            padding: 24px 16px;
+            transition: all 0.2s ease;
+        }
+
+        .team-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+        }
+
+        .team-card img {
+            width: 140px;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 16px;
+            border: 3px solid #e5e7eb;
+        }
+
+        .team-card h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 6px;
+        }
+
+        .team-card .team-role {
+            font-size: 0.875rem;
+            color: #4f46e5;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .founder-card {
+                flex-direction: column;
+                text-align: center;
+                padding: 32px 24px;
+            }
+
+            .team-grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            }
+
+            .team-card img {
+                width: 110px;
+                height: 110px;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="nav-brand">
+            <a href="index.html" style="text-decoration: none;">
+                <h1><img src="assets/images/logo.png" alt="EyeGuard" class="nav-logo"> EyeGuard</h1>
+            </a>
+        </div>
+        <div class="nav-menu" id="nav-menu">
+            <a href="index.html#about" class="nav-link" data-en="About us" data-zh="关于我们">About us</a>
+            <a href="index.html#articles" class="nav-link" data-en="Articles" data-zh="文章">Articles</a>
+            <a href="index.html#news" class="nav-link" data-en="Research News" data-zh="研究新闻">Research News</a>
+            <a href="index.html#program" class="nav-link" data-en="Our program" data-zh="我们的项目">Our program</a>
+            <a href="index.html#download" class="nav-link" data-en="Download" data-zh="下载">Download</a>
+            <a href="index.html#join" class="nav-link" data-en="Join us" data-zh="加入我们">Join us</a>
+            <a href="index.html#contact" class="nav-link" data-en="Contact" data-zh="联系方式">Contact</a>
+            <a href="gallery.html" class="nav-link" data-en="Gallery" data-zh="相册">Gallery</a>
+            <a href="team.html" class="nav-link" data-en="Team" data-zh="团队">Team</a>
+        </div>
+        <div class="nav-actions">
+            <button class="lang-toggle" id="lang-toggle">
+                <i class="fas fa-language"></i>
+                <span id="lang-text">EN</span>
+            </button>
+            <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<div class="team-page">
+    <!-- Founder Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title" data-en="Our Team" data-zh="我们的团队">Our Team</h2>
+            <p class="section-content" data-en="Meet the people behind EyeGuard. Our team spans cities and countries, united by a shared mission to make eye health awareness accessible to everyone." data-zh="认识 EyeGuard 背后的团队。我们的成员遍布各个城市和国家，共同致力于让眼健康意识普及到每一个人。">Meet the people behind EyeGuard. Our team spans cities and countries, united by a shared mission to make eye health awareness accessible to everyone.</p>
+            <div class="founder-card">
+                <img src="assets/images/team/Jindong Sha(Derek）-Irvine Chapter Presiden.jpg" alt="Derek (Jindong Sha)">
+                <div class="founder-info">
+                    <h3>Jindong Sha (Derek)</h3>
+                    <p class="founder-role" data-en="Founder" data-zh="创始人">Founder</p>
+                    <p class="founder-chapter" data-en="Irvine Chapter President" data-zh="尔湾分会会长">Irvine Chapter President</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chapter Presidents Section -->
+    <section class="section alt">
+        <div class="container">
+            <h2 class="section-title" data-en="Chapter Presidents" data-zh="分会会长">Chapter Presidents</h2>
+            <p class="section-content" data-en="Our chapter presidents lead local outreach efforts, organizing events, workshops, and school visits to spread eye health awareness in their communities." data-zh="我们的分会会长在当地开展宣传活动，组织讲座、工作坊和学校访问，将眼健康知识传播到各自的社区。">Our chapter presidents lead local outreach efforts, organizing events, workshops, and school visits to spread eye health awareness in their communities.</p>
+            <div class="team-grid">
+                <div class="team-card">
+                    <img src="assets/images/team/Adrian Michael Cheng  -Great Neck Chapter President.jpg" alt="Adrian Michael Cheng">
+                    <h3>Adrian Michael Cheng</h3>
+                    <p class="team-role">Great Neck Chapter</p>
+                </div>
+                <div class="team-card">
+                    <img src="assets/images/team/Claire Chuang - San Juan Capistrano Chapter President.jpg" alt="Claire Chuang">
+                    <h3>Claire Chuang</h3>
+                    <p class="team-role">San Juan Capistrano Chapter</p>
+                </div>
+                <div class="team-card">
+                    <img src="assets/images/team/Cristal Tao-Seattle Chapter President.jpg" alt="Cristal Tao">
+                    <h3>Cristal Tao</h3>
+                    <p class="team-role">Seattle Chapter</p>
+                </div>
+                <div class="team-card">
+                    <img src="assets/images/team/Diwen Huang Coquitlam Canada Chapter President.jpg" alt="Diwen Huang">
+                    <h3>Diwen Huang</h3>
+                    <p class="team-role">Coquitlam, Canada Chapter</p>
+                </div>
+                <div class="team-card">
+                    <img src="assets/images/team/Eleanor Shen - Yorba Linda Chapter President.jpg" alt="Eleanor Shen">
+                    <h3>Eleanor Shen</h3>
+                    <p class="team-role">Yorba Linda Chapter</p>
+                </div>
+                <div class="team-card">
+                    <img src="assets/images/team/Elsa Wu - Miami Chapter President.jpg" alt="Elsa Wu">
+                    <h3>Elsa Wu</h3>
+                    <p class="team-role">Miami Chapter</p>
+                </div>
+                <div class="team-card">
+                    <img src="assets/images/team/Jiayan Ling (Carrie) - Fort Hays Chapter President.jpg" alt="Jiayan Ling (Carrie)">
+                    <h3>Jiayan Ling (Carrie)</h3>
+                    <p class="team-role">Fort Hays Chapter</p>
+                </div>
+                <div class="team-card">
+                    <img src="assets/images/team/Jiayu Liu - Wuhan Chapter President.jpg" alt="Jiayu Liu">
+                    <h3>Jiayu Liu</h3>
+                    <p class="team-role">Wuhan Chapter</p>
+                </div>
+                <div class="team-card">
+                    <img src="assets/images/team/Jingze Fang-Hayward Chapter President.jpg" alt="Jingze Fang">
+                    <h3>Jingze Fang</h3>
+                    <p class="team-role">Hayward Chapter</p>
+                </div>
+                <div class="team-card">
+                    <img src="assets/images/team/Kevin Chen- Kansas Chapter President.jpg" alt="Kevin Chen">
+                    <h3>Kevin Chen</h3>
+                    <p class="team-role">Kansas Chapter</p>
+                </div>
+                <div class="team-card">
+                    <img src="assets/images/team/Kunming Chen (Tim)-Durham Chapter President.jpg" alt="Kunming Chen (Tim)">
+                    <h3>Kunming Chen (Tim)</h3>
+                    <p class="team-role">Durham Chapter</p>
+                </div>
+                <div class="team-card">
+                    <img src="assets/images/team/Leo Lei - Lee's Summit Chapter President.jpg" alt="Leo Lei">
+                    <h3>Leo Lei</h3>
+                    <p class="team-role">Lee's Summit Chapter</p>
+                </div>
+                <div class="team-card">
+                    <img src="assets/images/team/Luke Liu - Shanghai Chapter President.jpg" alt="Luke Liu">
+                    <h3>Luke Liu</h3>
+                    <p class="team-role">Shanghai Chapter</p>
+                </div>
+                <div class="team-card">
+                    <img src="assets/images/team/Muyao Wan (Angela)- Hefei Chapter President.jpg" alt="Muyao Wan (Angela)">
+                    <h3>Muyao Wan (Angela)</h3>
+                    <p class="team-role">Hefei Chapter</p>
+                </div>
+                <div class="team-card">
+                    <img src="assets/images/team/Qingqing Liu (Lily)-Huntington Chapter President.jpg" alt="Qingqing Liu (Lily)">
+                    <h3>Qingqing Liu (Lily)</h3>
+                    <p class="team-role">Huntington Chapter</p>
+                </div>
+                <div class="team-card">
+                    <img src="assets/images/team/Samuel Sai, Singapore Chapter President.jpg" alt="Samuel Sai">
+                    <h3>Samuel Sai</h3>
+                    <p class="team-role">Singapore Chapter</p>
+                </div>
+                <div class="team-card">
+                    <img src="assets/images/team/Terry Lin-college point.jpg" alt="Terry Lin">
+                    <h3>Terry Lin</h3>
+                    <p class="team-role">College Point Chapter</p>
+                </div>
+                <div class="team-card">
+                    <img src="assets/images/team/Yanbo Pei - Groton Chapter President.jpg" alt="Yanbo Pei">
+                    <h3>Yanbo Pei</h3>
+                    <p class="team-role">Groton Chapter</p>
+                </div>
+                <div class="team-card">
+                    <img src="assets/images/team/Yanhui Huang（Henrik)-Honolulu Chapter President.jpg" alt="Yanhui Huang (Henrik)">
+                    <h3>Yanhui Huang (Henrik)</h3>
+                    <p class="team-role">Honolulu Chapter</p>
+                </div>
+                <div class="team-card">
+                    <img src="assets/images/team/Yihan Du - Beijing Chapter President.jpg" alt="Yihan Du">
+                    <h3>Yihan Du</h3>
+                    <p class="team-role">Beijing Chapter</p>
+                </div>
+                <div class="team-card">
+                    <img src="assets/images/team/Yixuan Li (Shelly)- Greensboro Chapter President.jpg" alt="Yixuan Li (Shelly)">
+                    <h3>Yixuan Li (Shelly)</h3>
+                    <p class="team-role">Greensboro Chapter</p>
+                </div>
+                <div class="team-card">
+                    <img src="assets/images/team/Yumeng Liu - Toronto Chapter President.jpg" alt="Yumeng Liu">
+                    <h3>Yumeng Liu</h3>
+                    <p class="team-role">Toronto Chapter</p>
+                </div>
+                <div class="team-card">
+                    <img src="assets/images/team/Zirui Chen (Kevin）- Kansas Chapter President.jpg" alt="Zirui Chen (Kevin)">
+                    <h3>Zirui Chen (Kevin)</h3>
+                    <p class="team-role">Kansas Chapter</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<script>
+let currentLang = 'en';
+
+document.getElementById('mobile-menu-toggle').addEventListener('click', function() {
+    document.getElementById('nav-menu').classList.toggle('show');
+});
+
+document.getElementById('lang-toggle').addEventListener('click', function() {
+    currentLang = currentLang === 'en' ? 'zh' : 'en';
+    document.getElementById('lang-text').textContent = currentLang === 'en' ? 'EN' : '中文';
+    document.querySelectorAll('[data-en][data-zh]').forEach(function(el) {
+        el.textContent = currentLang === 'en' ? el.dataset.en : el.dataset.zh;
+    });
+});
+</script>
+</body>
+</html>

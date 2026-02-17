@@ -1,5 +1,13 @@
 [
   {
+    "title": "SR-EyeScan：自动化青光眼检测",
+    "summary": "一种低成本的自动化系统，能够从低质量的视网膜眼底图像中可靠地筛查青光眼，适用于专科医生资源有限的环境。作者：沙金东，Sage Hill School。",
+    "imageUrl": "assets/articles/slides.png",
+    "url": "https://docs.google.com/presentation/d/1mVIbl5jzS6bpUzYIbN3mk6f2AtSxgQkk/edit?usp=sharing&ouid=109877808138626275026&rtpof=true&sd=true",
+    "videoUrl": "",
+    "bodyMarkdown": ""
+  },
+  {
     "title": "20-20-20 法则",
     "summary": "每 20 分钟远眺 20 英尺（约 6 米）20 秒，放松调节、减轻眼疲劳。",
     "imageUrl": "https://picsum.photos/seed/eyeguard-2020-zh/1200/600",

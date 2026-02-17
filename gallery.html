@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EyeGuard - Gallery</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .gallery-page {
+            padding-top: 80px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 16px;
+            margin-top: 32px;
+        }
+
+        .gallery-item {
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .gallery-videos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 24px;
+            margin-top: 32px;
+        }
+
+        .gallery-video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 14px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .gallery-video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 14px;
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 3000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .lightbox.show {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: 90vw;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 16px;
+            border-radius: 50%;
+            transition: background 0.2s ease;
+        }
+
+        .lightbox-nav:hover {
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        .lightbox-prev { left: 20px; }
+        .lightbox-next { right: 20px; }
+
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+
+            .gallery-videos {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="nav-brand">
+            <a href="index.html" style="text-decoration: none;">
+                <h1><img src="assets/images/logo.png" alt="EyeGuard" class="nav-logo"> EyeGuard</h1>
+            </a>
+        </div>
+        <div class="nav-menu" id="nav-menu">
+            <a href="index.html#about" class="nav-link" data-en="About us" data-zh="关于我们">About us</a>
+            <a href="index.html#articles" class="nav-link" data-en="Articles" data-zh="文章">Articles</a>
+            <a href="index.html#news" class="nav-link" data-en="Research News" data-zh="研究新闻">Research News</a>
+            <a href="index.html#program" class="nav-link" data-en="Our program" data-zh="我们的项目">Our program</a>
+            <a href="index.html#download" class="nav-link" data-en="Download" data-zh="下载">Download</a>
+            <a href="index.html#join" class="nav-link" data-en="Join us" data-zh="加入我们">Join us</a>
+            <a href="index.html#contact" class="nav-link" data-en="Contact" data-zh="联系方式">Contact</a>
+            <a href="gallery.html" class="nav-link" data-en="Gallery" data-zh="相册">Gallery</a>
+            <a href="team.html" class="nav-link" data-en="Team" data-zh="团队">Team</a>
+        </div>
+        <div class="nav-actions">
+            <button class="lang-toggle" id="lang-toggle">
+                <i class="fas fa-language"></i>
+                <span id="lang-text">EN</span>
+            </button>
+            <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<div class="gallery-page">
+    <!-- Videos Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title" data-en="Videos" data-zh="视频">Videos</h2>
+            <p class="section-content" data-en="Watch our presentations and learn more about EyeGuard's mission to promote eye health awareness." data-zh="观看我们的演讲视频，了解 EyeGuard 推广眼健康意识的使命。">Watch our presentations and learn more about EyeGuard's mission to promote eye health awareness.</p>
+            <div class="gallery-videos">
+                <div class="gallery-video-wrapper">
+                    <iframe
+                        src="https://www.youtube.com/embed/BU7g9EysQiM"
+                        title="EyeGuard Video 1"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="gallery-video-wrapper">
+                    <iframe
+                        src="https://www.youtube.com/embed/Rh01PdhfoAU"
+                        title="EyeGuard Video 2"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Photos Section -->
+    <section class="section alt">
+        <div class="container">
+            <h2 class="section-title" data-en="Photos" data-zh="照片">Photos</h2>
+            <p class="section-content" data-en="Highlights from our events, workshops, and community outreach activities around the world." data-zh="来自我们在世界各地举办的活动、工作坊和社区推广的精彩瞬间。">Highlights from our events, workshops, and community outreach activities around the world.</p>
+            <div class="gallery-grid">
+                <div class="gallery-item" onclick="openLightbox(0)">
+                    <img src="assets/images/gallery/img1.jpg" alt="Gallery photo 1">
+                </div>
+                <div class="gallery-item" onclick="openLightbox(1)">
+                    <img src="assets/images/gallery/img2.jpg" alt="Gallery photo 2">
+                </div>
+                <div class="gallery-item" onclick="openLightbox(2)">
+                    <img src="assets/images/gallery/img3.jpg" alt="Gallery photo 3">
+                </div>
+                <div class="gallery-item" onclick="openLightbox(3)">
+                    <img src="assets/images/gallery/img4.jpg" alt="Gallery photo 4">
+                </div>
+                <div class="gallery-item" onclick="openLightbox(4)">
+                    <img src="assets/images/gallery/img5.jpg" alt="Gallery photo 5">
+                </div>
+                <div class="gallery-item" onclick="openLightbox(5)">
+                    <img src="assets/images/gallery/img6.jpg" alt="Gallery photo 6">
+                </div>
+                <div class="gallery-item" onclick="openLightbox(6)">
+                    <img src="assets/images/gallery/img7.jpg" alt="Gallery photo 7">
+                </div>
+                <div class="gallery-item" onclick="openLightbox(7)">
+                    <img src="assets/images/gallery/img8.jpg" alt="Gallery photo 8">
+                </div>
+                <div class="gallery-item" onclick="openLightbox(8)">
+                    <img src="assets/images/gallery/img9.jpg" alt="Gallery photo 9">
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+    <button class="lightbox-close" onclick="closeLightbox()"><i class="fas fa-times"></i></button>
+    <button class="lightbox-nav lightbox-prev" onclick="navigateLightbox(-1)"><i class="fas fa-chevron-left"></i></button>
+    <img id="lightbox-img" src="" alt="Gallery photo">
+    <button class="lightbox-nav lightbox-next" onclick="navigateLightbox(1)"><i class="fas fa-chevron-right"></i></button>
+</div>
+
+<script>
+let currentLang = 'en';
+
+document.getElementById('mobile-menu-toggle').addEventListener('click', function() {
+    document.getElementById('nav-menu').classList.toggle('show');
+});
+
+document.getElementById('lang-toggle').addEventListener('click', function() {
+    currentLang = currentLang === 'en' ? 'zh' : 'en';
+    document.getElementById('lang-text').textContent = currentLang === 'en' ? 'EN' : '中文';
+    document.querySelectorAll('[data-en][data-zh]').forEach(function(el) {
+        el.textContent = currentLang === 'en' ? el.dataset.en : el.dataset.zh;
+    });
+});
+
+const images = [
+    'assets/images/gallery/img1.jpg',
+    'assets/images/gallery/img2.jpg',
+    'assets/images/gallery/img3.jpg',
+    'assets/images/gallery/img4.jpg',
+    'assets/images/gallery/img5.jpg',
+    'assets/images/gallery/img6.jpg',
+    'assets/images/gallery/img7.jpg',
+    'assets/images/gallery/img8.jpg',
+    'assets/images/gallery/img9.jpg'
+];
+
+let currentIndex = 0;
+
+function openLightbox(index) {
+    currentIndex = index;
+    document.getElementById('lightbox-img').src = images[index];
+    document.getElementById('lightbox').classList.add('show');
+}
+
+function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('show');
+}
+
+function navigateLightbox(direction) {
+    currentIndex = (currentIndex + direction + images.length) % images.length;
+    document.getElementById('lightbox-img').src = images[currentIndex];
+}
+
+document.getElementById('lightbox').addEventListener('click', function(e) {
+    if (e.target === this) closeLightbox();
+});
+
+document.addEventListener('keydown', function(e) {
+    const lightbox = document.getElementById('lightbox');
+    if (!lightbox.classList.contains('show')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') navigateLightbox(-1);
+    if (e.key === 'ArrowRight') navigateLightbox(1);
+});
+</script>
+</body>
+</html>

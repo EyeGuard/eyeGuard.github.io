@@ -175,6 +175,15 @@ function updateLanguage() {
             option.textContent = currentLang === 'en' ? enText : zhText;
         }
     });
+
+    // Update hero background based on language
+    const hero = document.querySelector('.hero');
+    if (hero) {
+        const bgImage = currentLang === 'zh'
+            ? 'assets/images/background-chinese.png'
+            : 'assets/images/background.png';
+        hero.style.backgroundImage = "url('" + bgImage + "')";
+    }
 }
 
 // Mobile menu
@@ -184,9 +193,9 @@ function toggleMobileMenu() {
 
 // Navigation
 function handleNavClick(e) {
-    e.preventDefault();
     const href = e.target.getAttribute('href');
     if (href && href.startsWith('#')) {
+        e.preventDefault();
         const target = document.querySelector(href);
         if (target) {
             const offsetTop = target.offsetTop - 80; // Account for fixed navbar
@@ -292,18 +301,24 @@ function renderArticles() {
         return;
     }
 
-    articlesGrid.innerHTML = articles.map((article, index) => `
-        <div class="article-card" onclick="openArticle(${index})">
+    articlesGrid.innerHTML = articles.map((article, index) => {
+        const hasUrl = article.url && article.url.trim() !== '';
+        const clickHandler = hasUrl
+            ? `window.open('${article.url.replace(/'/g, "\\'")}', '_blank')`
+            : `openArticle(${index})`;
+        return `
+        <div class="article-card" onclick="${clickHandler}">
             ${article.imageUrl ? `<img src="${article.imageUrl}" alt="${article.title}" class="article-image" onerror="this.style.display='none'">` : ''}
             <div class="article-content">
                 <h3 class="article-title">${article.title}</h3>
                 <p class="article-summary">${article.summary}</p>
-                <a href="#" class="article-read" onclick="event.stopPropagation(); openArticle(${index})">
+                <a href="${hasUrl ? article.url : '#'}" class="article-read" ${hasUrl ? 'target="_blank"' : ''} onclick="event.stopPropagation(); ${hasUrl ? '' : `openArticle(${index})`}">
                     ${currentLang === 'en' ? 'Read' : '阅读'} <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
         </div>
-    `).join('');
+    `;
+    }).join('');
 }
 
 function openArticle(index) {

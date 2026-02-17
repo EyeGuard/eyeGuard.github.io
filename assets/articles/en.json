@@ -1,5 +1,13 @@
 [
   {
+    "title": "SR-EyeScan: Toward Automated Glaucoma Detection",
+    "summary": "A low-cost, automated system that reliably screens for glaucoma from low-quality retinal fundus images in settings with limited specialist availability. By Jindong Sha, Sage Hill School.",
+    "imageUrl": "assets/articles/slides.png",
+    "url": "https://docs.google.com/presentation/d/1mVIbl5jzS6bpUzYIbN3mk6f2AtSxgQkk/edit?usp=sharing&ouid=109877808138626275026&rtpof=true&sd=true",
+    "videoUrl": "",
+    "bodyMarkdown": ""
+  },
+  {
     "title": "20-20-20 Rule",
     "summary": "Every 20 minutes, look 20 feet away for 20 seconds to relax accommodation and reduce strain.",
     "imageUrl": "https://picsum.photos/seed/eyeguard-2020/1200/600",
