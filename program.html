@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EyeGuard - Our Program</title>
+    <link rel="icon" type="image/png" href="assets/images/logo.png">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .program-page {
+            padding-top: 80px;
+        }
+
+        .flipbook-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            margin: 40px auto 0;
+            aspect-ratio: 4 / 3;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .flipbook-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 14px;
+        }
+
+        .program-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-top: 32px;
+        }
+
+        .program-photo {
+            border-radius: 14px;
+            overflow: hidden;
+            background: white;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: all 0.2s ease;
+        }
+
+        .program-photo:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+        }
+
+        .program-photo img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .program-photo-caption {
+            padding: 16px;
+            font-size: 0.95rem;
+            color: #374151;
+            line-height: 1.5;
+        }
+
+        .program-video-card {
+            border-radius: 14px;
+            overflow: hidden;
+            background: white;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: all 0.2s ease;
+        }
+
+        .program-video-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+        }
+
+        .program-video-card video {
+            width: 100%;
+            display: block;
+            background: #000;
+        }
+
+        .program-video-caption {
+            padding: 16px;
+            font-size: 0.95rem;
+            color: #374151;
+            line-height: 1.5;
+        }
+
+        .yt-embed-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+        }
+
+        .yt-embed-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .flipbook-wrapper {
+                aspect-ratio: 3 / 4;
+            }
+
+            .program-gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="nav-brand">
+            <a href="index.html" style="text-decoration: none;">
+                <h1><img src="assets/images/logo.png" alt="EyeGuard" class="nav-logo"> EyeGuard</h1>
+            </a>
+        </div>
+        <div class="nav-menu" id="nav-menu">
+            <a href="index.html#about" class="nav-link" data-en="About us" data-zh="关于我们">About us</a>
+            <a href="index.html#eye-health-guide" class="nav-link" data-en="Eye Health Guide" data-zh="护眼指南">Eye
+                Health Guide</a>
+            <a href="program.html" class="nav-link" data-en="Our program" data-zh="我们的项目">Our program</a>
+            <a href="index.html#download" class="nav-link" data-en="Download" data-zh="下载">Download</a>
+            <a href="index.html#join" class="nav-link" data-en="Join us" data-zh="加入我们">Join us</a>
+            <a href="index.html#contact" class="nav-link" data-en="Contact" data-zh="联系方式">Contact</a>
+            <a href="gallery.html" class="nav-link" data-en="Gallery" data-zh="相册">Gallery</a>
+            <a href="team.html" class="nav-link" data-en="Team" data-zh="团队">Team</a>
+        </div>
+        <div class="nav-actions">
+            <button class="lang-toggle" id="lang-toggle">
+                <i class="fas fa-language"></i>
+                <span id="lang-text">EN</span>
+            </button>
+            <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<div class="program-page">
+    <!-- Program Steps Section -->
+    <!--    <section class="section">-->
+    <!--        <div class="container">-->
+    <!--            <h2 class="section-title" data-en="Our Program" data-zh="我们的项目">Our Program</h2>-->
+    <!--            <div class="program-steps">-->
+    <!--                <div class="step">-->
+    <!--                    <i class="fas fa-check-circle"></i>-->
+    <!--                    <div class="step-content">-->
+    <!--                        <h3 data-en="Screen-time audit" data-zh="屏幕时间盘点">Screen-time audit</h3>-->
+    <!--                        <p data-en="Track near-work habits daily." data-zh="每日记录近距离用眼习惯。">Track near-work habits daily.</p>-->
+    <!--                    </div>-->
+    <!--                </div>-->
+    <!--                <div class="step">-->
+    <!--                    <i class="fas fa-check-circle"></i>-->
+    <!--                    <div class="step-content">-->
+    <!--                        <h3 data-en="Micro-lessons" data-zh="微课视频">Micro-lessons</h3>-->
+    <!--                        <p data-en="3–5 min weekly videos." data-zh="每周 3–5 分钟视频学习。">3–5 min weekly videos.</p>-->
+    <!--                    </div>-->
+    <!--                </div>-->
+    <!--                <div class="step">-->
+    <!--                    <i class="fas fa-check-circle"></i>-->
+    <!--                    <div class="step-content">-->
+    <!--                        <h3 data-en="Practice" data-zh="每日实践">Practice</h3>-->
+    <!--                        <p data-en="20-20-20, outdoor time, lighting & posture." data-zh="20-20-20、户外时间、合适光照与正确坐姿。">20-20-20, outdoor time, lighting & posture.</p>-->
+    <!--                    </div>-->
+    <!--                </div>-->
+    <!--                <div class="step">-->
+    <!--                    <i class="fas fa-check-circle"></i>-->
+    <!--                    <div class="step-content">-->
+    <!--                        <h3 data-en="Parent/Teacher kit" data-zh="家校工具包">Parent/Teacher kit</h3>-->
+    <!--                        <p data-en="Posters, slides, and class activities." data-zh="宣传海报、课堂活动与幻灯片。">Posters, slides, and class activities.</p>-->
+    <!--                    </div>-->
+    <!--                </div>-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--    </section>-->
+
+    <!-- Flipbook Section -->
+    <section class="section alt">
+        <div class="container">
+            <h2 class="section-title" data-en="Our Program" data-zh="我们的项目">Our Program</h2>
+            <p class="section-content"
+               data-en="Check out our pamphlet for more information about our program and mission!"
+               data-zh="查看我们的宣传册，了解更多关于我们项目和使命的信息！">Check out our pamphlet for more information about our program and mission!</p>
+            <p style="margin-top: 16px;">
+                <a href="https://www.instagram.com/eye_guard_inc/" target="_blank" rel="noopener noreferrer" style="color: #4f46e5; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 8px;">
+                    <i class="fab fa-instagram" style="font-size: 1.25rem;"></i>
+                    <span data-en="Follow us on Instagram" data-zh="关注我们的 Instagram">Follow us on Instagram</span>
+                </a>
+            </p>
+
+            <div class="flipbook-wrapper">
+                <iframe
+                        src="https://heyzine.com/flip-book/49c7f3adff.html"
+                        title="EyeGuard Program Booklet"
+                        allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Program Videos Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title" data-en="Event Videos" data-zh="活动视频">Event Videos</h2>
+            <div class="program-gallery" id="program-videos">
+                <div class="loading">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <span data-en="Loading videos..." data-zh="加载视频中...">Loading videos...</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Program Photos Section -->
+    <section class="section alt">
+        <div class="container">
+            <h2 class="section-title" data-en="Event Photos" data-zh="活动照片">Event Photos</h2>
+            <div class="program-gallery" id="program-gallery">
+                <div class="loading">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <span data-en="Loading photos..." data-zh="加载照片中...">Loading photos...</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Eye Massage Videos Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title" data-en="Eye Massage Videos" data-zh="眼部按摩视频">Eye Massage Videos</h2>
+            <p class="section-content"
+               data-en="Below, you can find some daily eye messaging videos for regular eye relief."
+               data-zh="以下是一些日常眼部按摩视频，帮助您缓解眼部疲劳。">Below, you can find some daily eye messaging videos for regular eye relief.</p>
+            <div class="program-gallery" style="margin-top: 32px;">
+                <div class="program-video-card">
+                    <div class="yt-embed-wrapper">
+                        <iframe
+                            src="https://www.youtube.com/embed/Lz5kCWhmWNY"
+                            title="Eye Massage Video 1"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+                <div class="program-video-card">
+                    <div class="yt-embed-wrapper">
+                        <iframe
+                            src="https://www.youtube.com/embed/crmc1-0vQTE"
+                            title="Eye Massage Video 2"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+                <div class="program-video-card">
+                    <div class="yt-embed-wrapper">
+                        <iframe
+                            src="https://www.youtube.com/embed/2V1NRzki9LY"
+                            title="Eye Massage Video 3"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+                <div class="program-video-card">
+                    <div class="yt-embed-wrapper">
+                        <iframe
+                            src="https://www.youtube.com/embed/50A1Wr8XrOU"
+                            title="Eye Massage Video 4"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+                <div class="program-video-card">
+                    <div class="yt-embed-wrapper">
+                        <iframe
+                            src="https://www.youtube.com/embed/A-Jv5yNeHGE"
+                            title="Eye Massage Video 5"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+                <div class="program-video-card">
+                    <div class="yt-embed-wrapper">
+                        <iframe
+                            src="https://www.youtube.com/embed/0-CUXKJ2CBU"
+                            title="Eye Massage Video 6"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<script>
+    let currentLang = 'en';
+
+    document.getElementById('mobile-menu-toggle').addEventListener('click', function() {
+        document.getElementById('nav-menu').classList.toggle('show');
+    });
+
+    document.getElementById('lang-toggle').addEventListener('click', function() {
+        currentLang = currentLang === 'en' ? 'zh' : 'en';
+        document.getElementById('lang-text').textContent = currentLang === 'en' ? 'EN' : '中文';
+        document.querySelectorAll('[data-en][data-zh]').forEach(function(el) {
+            el.textContent = currentLang === 'en' ? el.dataset.en : el.dataset.zh;
+        });
+    });
+
+    // Generic loader: fetches numbered files from a folder and returns an array of { src, caption }
+    async function loadNumberedMedia(folder, extension) {
+        var items = [];
+        var index = 1;
+        while (true) {
+            try {
+                var response = await fetch(folder + '/' + index + '.' + extension, { method: 'HEAD' });
+                if (!response.ok) break;
+
+                var caption = '';
+                try {
+                    var txtResponse = await fetch(folder + '/' + index + '.txt');
+                    if (txtResponse.ok) caption = await txtResponse.text();
+                } catch (e) {}
+
+                items.push({ src: folder + '/' + index + '.' + extension, caption: caption.trim() });
+                index++;
+            } catch (e) {
+                break;
+            }
+        }
+        return items;
+    }
+
+    // Load photos from assets/our_program/images/
+    (async function() {
+        var gallery = document.getElementById('program-gallery');
+        var photos = await loadNumberedMedia('assets/our_program/images', 'jpg');
+
+        if (photos.length === 0) {
+            gallery.innerHTML = '<div class="loading"><i class="fas fa-info-circle"></i><span>No photos available</span></div>';
+            return;
+        }
+
+        gallery.innerHTML = photos.map(function(photo) {
+            return '<div class="program-photo">' +
+                '<img src="' + photo.src + '" alt="Program photo">' +
+                (photo.caption ? '<p class="program-photo-caption">' + photo.caption + '</p>' : '') +
+                '</div>';
+        }).join('');
+    })();
+
+    // Load videos from assets/our_program/videos/
+    (async function() {
+        var container = document.getElementById('program-videos');
+        var videos = await loadNumberedMedia('assets/our_program/videos', 'mp4');
+
+        if (videos.length === 0) {
+            container.innerHTML = '<div class="loading"><i class="fas fa-info-circle"></i><span>No videos available</span></div>';
+            return;
+        }
+
+        container.innerHTML = videos.map(function(video) {
+            return '<div class="program-video-card">' +
+                '<video controls preload="metadata"><source src="' + video.src + '" type="video/mp4"></video>' +
+                (video.caption ? '<p class="program-video-caption">' + video.caption + '</p>' : '') +
+                '</div>';
+        }).join('');
+    })();
+</script>
+</body>
+</html>
