@@ -179,6 +179,40 @@ body {
     color: #6b7280;
 }
 
+/* Guide Video */
+.guide-video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    max-width: 700px;
+    margin: 32px auto;
+    border-radius: 14px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.guide-video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 14px;
+}
+
+/* Subsection Title */
+.subsection-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #374151;
+    margin-top: 48px;
+    margin-bottom: 8px;
+}
+
+.subsection-title:first-of-type {
+    margin-top: 16px;
+}
+
 /* Articles Grid */
 .articles-grid {
     display: grid;
