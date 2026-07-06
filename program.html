@@ -382,19 +382,37 @@
     // Load videos from assets/our_program/videos/
     (async function() {
         var container = document.getElementById('program-videos');
-        var videos = await loadNumberedMedia('assets/our_program/videos', 'mp4');
 
-        if (videos.length === 0) {
+        var ytVideos = [];
+        try {
+            var ytResponse = await fetch('assets/our_program/videos/youtube.json');
+            if (ytResponse.ok) ytVideos = await ytResponse.json();
+        } catch (e) {}
+
+        var mp4Videos = await loadNumberedMedia('assets/our_program/videos', 'mp4');
+
+        if (ytVideos.length === 0 && mp4Videos.length === 0) {
             container.innerHTML = '<div class="loading"><i class="fas fa-info-circle"></i><span>No videos available</span></div>';
             return;
         }
 
-        container.innerHTML = videos.map(function(video) {
+        var ytHTML = ytVideos.map(function(video) {
+            return '<div class="program-video-card">' +
+                '<div class="yt-embed-wrapper">' +
+                '<iframe src="https://www.youtube.com/embed/' + video.id + '" title="' + (video.title || 'Event Video') + '" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>' +
+                '</div>' +
+                (video.caption ? '<p class="program-video-caption">' + video.caption + '</p>' : '') +
+                '</div>';
+        }).join('');
+
+        var mp4HTML = mp4Videos.map(function(video) {
             return '<div class="program-video-card">' +
                 '<video controls preload="metadata"><source src="' + video.src + '" type="video/mp4"></video>' +
                 (video.caption ? '<p class="program-video-caption">' + video.caption + '</p>' : '') +
                 '</div>';
         }).join('');
+
+        container.innerHTML = ytHTML + mp4HTML;
     })();
 </script>
 </body>
