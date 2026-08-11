@@ -189,6 +189,7 @@ function updateLanguage() {
 // Mobile menu
 function toggleMobileMenu() {
     navMenu.classList.toggle('show');
+    mobileMenuToggle.setAttribute('aria-expanded', navMenu.classList.contains('show'));
 }
 
 // Navigation
@@ -207,6 +208,7 @@ function handleNavClick(e) {
     }
     // Close mobile menu if open
     navMenu.classList.remove('show');
+    mobileMenuToggle.setAttribute('aria-expanded', 'false');
 }
 
 // Modal functions
@@ -234,32 +236,15 @@ async function handleFormSubmit(e) {
         _subject: 'New EyeGuard Join Request'
     };
 
-    try {
-        // Try Formspree first (replace with your actual endpoint)
-        const response = await fetch('https://formspree.io/f/your-form-id', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data)
-        });
-
-        if (response.ok) {
-            showSuccessToast();
-            form.reset();
-            if (form === modalJoinForm) {
-                closeJoinModal();
-            }
-        } else {
-            throw new Error('Form submission failed');
-        }
-    } catch (error) {
-        // Fallback: open email client
-        const subject = encodeURIComponent('Join EyeGuard');
-        const body = encodeURIComponent(
-            `Name: ${data.name}\nRole: ${data.role}\nEmail: ${data.email}\n\n${data.message}`
-        );
-        window.location.href = `mailto:Dereksha2008@gmail.com?subject=${subject}&body=${body}`;
+    const subject = encodeURIComponent('Join EyeGuard');
+    const body = encodeURIComponent(
+        `Name: ${data.name}\nRole: ${data.role}\nEmail: ${data.email}\n\n${data.message}`
+    );
+    window.location.href = `mailto:Dereksha2008@gmail.com?subject=${subject}&body=${body}`;
+    showSuccessToast();
+    form.reset();
+    if (form === modalJoinForm) {
+        closeJoinModal();
     }
 }
 
@@ -433,13 +418,15 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 document.addEventListener('click', function(e) {
     if (!navMenu.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
         navMenu.classList.remove('show');
+        mobileMenuToggle.setAttribute('aria-expanded', 'false');
     }
 });
 
 // Handle window resize
 window.addEventListener('resize', function() {
-    if (window.innerWidth > 768) {
+    if (window.innerWidth > 1024) {
         navMenu.classList.remove('show');
+        mobileMenuToggle.setAttribute('aria-expanded', 'false');
     }
 });
 

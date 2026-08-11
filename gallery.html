@@ -149,16 +149,17 @@
             <a href="program.html" class="nav-link" data-en="Our program" data-zh="我们的项目">Our program</a>
             <a href="index.html#download" class="nav-link" data-en="Download" data-zh="下载">Download</a>
             <a href="index.html#join" class="nav-link" data-en="Join us" data-zh="加入我们">Join us</a>
+            <a href="index.html#feedback" class="nav-link" data-en="Feedback" data-zh="反馈">Feedback</a>
             <a href="index.html#contact" class="nav-link" data-en="Contact" data-zh="联系方式">Contact</a>
             <a href="gallery.html" class="nav-link" data-en="Gallery" data-zh="相册">Gallery</a>
             <a href="team.html" class="nav-link" data-en="Team" data-zh="团队">Team</a>
         </div>
         <div class="nav-actions">
-            <button class="lang-toggle" id="lang-toggle">
+            <button class="lang-toggle" id="lang-toggle" type="button" aria-label="Switch language">
                 <i class="fas fa-language"></i>
                 <span id="lang-text">EN</span>
             </button>
-            <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+            <button class="mobile-menu-toggle" id="mobile-menu-toggle" type="button" aria-label="Open navigation menu" aria-controls="nav-menu" aria-expanded="false">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
@@ -234,17 +235,19 @@
 
 <!-- Lightbox -->
 <div class="lightbox" id="lightbox">
-    <button class="lightbox-close" onclick="closeLightbox()"><i class="fas fa-times"></i></button>
-    <button class="lightbox-nav lightbox-prev" onclick="navigateLightbox(-1)"><i class="fas fa-chevron-left"></i></button>
+    <button class="lightbox-close" type="button" aria-label="Close gallery" onclick="closeLightbox()"><i class="fas fa-times"></i></button>
+    <button class="lightbox-nav lightbox-prev" type="button" aria-label="Previous photo" onclick="navigateLightbox(-1)"><i class="fas fa-chevron-left"></i></button>
     <img id="lightbox-img" src="" alt="Gallery photo">
-    <button class="lightbox-nav lightbox-next" onclick="navigateLightbox(1)"><i class="fas fa-chevron-right"></i></button>
+    <button class="lightbox-nav lightbox-next" type="button" aria-label="Next photo" onclick="navigateLightbox(1)"><i class="fas fa-chevron-right"></i></button>
 </div>
 
 <script>
 let currentLang = 'en';
 
 document.getElementById('mobile-menu-toggle').addEventListener('click', function() {
-    document.getElementById('nav-menu').classList.toggle('show');
+    var menu = document.getElementById('nav-menu');
+    menu.classList.toggle('show');
+    this.setAttribute('aria-expanded', menu.classList.contains('show'));
 });
 
 document.getElementById('lang-toggle').addEventListener('click', function() {

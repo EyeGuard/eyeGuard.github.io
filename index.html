@@ -23,16 +23,17 @@
             <a href="program.html" class="nav-link" data-en="Our program" data-zh="我们的项目">Our program</a>
             <a href="#download" class="nav-link" data-en="Download" data-zh="下载">Download</a>
             <a href="#join" class="nav-link" data-en="Join us" data-zh="加入我们">Join us</a>
+            <a href="#feedback" class="nav-link" data-en="Feedback" data-zh="反馈">Feedback</a>
             <a href="#contact" class="nav-link" data-en="Contact" data-zh="联系方式">Contact</a>
             <a href="gallery.html" class="nav-link" data-en="Gallery" data-zh="相册">Gallery</a>
             <a href="team.html" class="nav-link" data-en="Team" data-zh="团队">Team</a>
         </div>
         <div class="nav-actions">
-            <button class="lang-toggle" id="lang-toggle">
+            <button class="lang-toggle" id="lang-toggle" type="button" aria-label="Switch language">
                 <i class="fas fa-language"></i>
                 <span id="lang-text">EN</span>
             </button>
-            <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+            <button class="mobile-menu-toggle" id="mobile-menu-toggle" type="button" aria-label="Open navigation menu" aria-controls="nav-menu" aria-expanded="false">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
@@ -183,11 +184,29 @@
                 </div>
                 <button type="submit" class="submit-button">
                     <i class="fas fa-paper-plane"></i>
-                    <span data-en="Request access" data-zh="提交申请">Request access</span>
+                    <span data-en="Send Now" data-zh="立即发送">Send Now</span>
                 </button>
                 <p class="form-note" data-en="We'll reply in 1–2 days." data-zh="我们会在 1–2 天内回复。">We'll reply in
                     1–2 days.</p>
             </form>
+        </div>
+    </div>
+</section>
+
+<!-- Feedback Section -->
+<section id="feedback" class="section alt">
+    <div class="container">
+        <h2 class="section-title" data-en="App Feedback" data-zh="应用反馈">App Feedback</h2>
+        <p class="section-content" style="text-align:center;margin-bottom:1.5rem;"
+           data-en="Used the EyeGuard app? Share your experience to help us improve."
+           data-zh="使用过 EyeGuard 应用？分享您的体验，帮助我们改进。">Used the EyeGuard app? Share your experience to help us improve.</p>
+        <div style="display:flex;justify-content:center;">
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSf1Ff9wDzZyyDmmxTdVWradjGSgTj7cXXQzqd19ckUMUJNTcg/viewform?embedded=true"
+                    title="EyeGuard app feedback form"
+                    width="100%" height="680" frameborder="0" marginheight="0" marginwidth="0"
+                    style="max-width:700px;border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,0.08);">
+                Loading…
+            </iframe>
         </div>
     </div>
 </section>
@@ -224,7 +243,7 @@
     <div class="modal-content">
         <div class="modal-header">
             <h3 data-en="Join the program" data-zh="加入项目">Join the program</h3>
-            <button class="modal-close" id="modal-close">
+            <button class="modal-close" id="modal-close" type="button" aria-label="Close join form">
                 <i class="fas fa-times"></i>
             </button>
         </div>
@@ -257,7 +276,7 @@
                 </div>
                 <button type="submit" class="submit-button">
                     <i class="fas fa-paper-plane"></i>
-                    <span data-en="Request access" data-zh="提交申请">Request access</span>
+                    <span data-en="Send Now" data-zh="立即发送">Send Now</span>
                 </button>
                 <p class="form-note" data-en="We'll reply in 1–2 days." data-zh="我们会在 1–2 天内回复。">We'll reply in
                     1–2 天内回复。</p>

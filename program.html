@@ -139,16 +139,17 @@
             <a href="program.html" class="nav-link" data-en="Our program" data-zh="我们的项目">Our program</a>
             <a href="index.html#download" class="nav-link" data-en="Download" data-zh="下载">Download</a>
             <a href="index.html#join" class="nav-link" data-en="Join us" data-zh="加入我们">Join us</a>
+            <a href="index.html#feedback" class="nav-link" data-en="Feedback" data-zh="反馈">Feedback</a>
             <a href="index.html#contact" class="nav-link" data-en="Contact" data-zh="联系方式">Contact</a>
             <a href="gallery.html" class="nav-link" data-en="Gallery" data-zh="相册">Gallery</a>
             <a href="team.html" class="nav-link" data-en="Team" data-zh="团队">Team</a>
         </div>
         <div class="nav-actions">
-            <button class="lang-toggle" id="lang-toggle">
+            <button class="lang-toggle" id="lang-toggle" type="button" aria-label="Switch language">
                 <i class="fas fa-language"></i>
                 <span id="lang-text">EN</span>
             </button>
-            <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+            <button class="mobile-menu-toggle" id="mobile-menu-toggle" type="button" aria-label="Open navigation menu" aria-controls="nav-menu" aria-expanded="false">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
@@ -326,7 +327,9 @@
     let currentLang = 'en';
 
     document.getElementById('mobile-menu-toggle').addEventListener('click', function() {
-        document.getElementById('nav-menu').classList.toggle('show');
+        var menu = document.getElementById('nav-menu');
+        menu.classList.toggle('show');
+        this.setAttribute('aria-expanded', menu.classList.contains('show'));
     });
 
     document.getElementById('lang-toggle').addEventListener('click', function() {

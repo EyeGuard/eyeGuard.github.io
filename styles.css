@@ -799,6 +799,30 @@ body {
     font-style: italic;
 }
 
+/* Navigation switches to its compact layout before links can overflow on tablets. */
+@media (max-width: 1024px) {
+    .nav-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: white;
+        border-top: 1px solid #e5e7eb;
+        flex-direction: column;
+        padding: 20px;
+        gap: 16px;
+    }
+
+    .nav-menu.show {
+        display: flex;
+    }
+
+    .mobile-menu-toggle {
+        display: block;
+    }
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .nav-menu {
